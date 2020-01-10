@@ -1,19 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'connected-react-router';
 
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
 import DayPlannerRouter from './routes';
-import store, { history } from './store';
 
 ReactDOM.render(
-    <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <DayPlannerRouter></DayPlannerRouter>
-        </ConnectedRouter>
-    </Provider>,
+    <DayPlannerRouter></DayPlannerRouter>,
     document.getElementById('root')
 );
 

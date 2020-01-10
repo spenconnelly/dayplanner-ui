@@ -1,5 +1,4 @@
 import React from 'react';
-import LoginManager from '../LoginManager/LoginManager';
 import Title from '../MenuTitle/MenuTitle';
 
 import './MenuBar.scss';
@@ -11,7 +10,6 @@ const MenuBar = props => {
                 <Title titleName="DayPlanner.io" />
             </div>
             <div className="right--container">
-                <LoginManager />
             </div>
         </div>
     );
