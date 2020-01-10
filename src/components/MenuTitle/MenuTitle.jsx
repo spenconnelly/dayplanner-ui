@@ -11,6 +11,6 @@ const MenuTitle = props => {
             {titleName}
         </div>
     );
-}
+};
 
 export default MenuTitle;
