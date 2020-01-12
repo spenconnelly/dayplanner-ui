@@ -1,14 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const FIND_PROFILE_BY_EMAIL = gql`
-    mutation FindProfileByEmail($email: String!) {
-        findProfileByEmail(email: $email) {
-            id
-            email
-            events {
-                name
-                date
-            }
-        }
+export const GET_CURRENT_USER_PROFILE = gql`
+    query {
+        userProfile @client
     }
 `;
