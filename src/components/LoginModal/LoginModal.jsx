@@ -5,7 +5,9 @@ import {
     ModalBody,
     ModalFooter,
     Input,
-    Button
+    Button,
+    FormFeedback,
+    Label
 } from 'reactstrap';
 
 const LoginModal = props => {
@@ -14,7 +16,8 @@ const LoginModal = props => {
     const {
         isOpen,
         toggle,
-        isValidLogin,
+        isEmailInUse,
+        isAccountNotFound,
         loginHandler,
         registerHandler
     } = props;
@@ -25,12 +28,15 @@ const LoginModal = props => {
                 Login
             </ModalHeader>
             <ModalBody>
+                <Label for="email">Email:</Label>
                 <Input
-                    invalid={!isValidLogin}
+                    invalid={isEmailInUse || isAccountNotFound}
                     onChange={(event) => setInput(event.target.value)}
                     placeholder="example@example.com"
                     value={input}
                 />
+                { isEmailInUse && <FormFeedback>Email already in use.</FormFeedback> }
+                { isAccountNotFound && <FormFeedback>Account not found.</FormFeedback> }
             </ModalBody>
             <ModalFooter>
                 <Button onClick={() => loginHandler(input)} color="primary">Login</Button>

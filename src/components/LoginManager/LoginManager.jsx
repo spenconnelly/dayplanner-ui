@@ -1,19 +1,25 @@
 import React, { useState } from 'react';
-import LoggedInItem from '../LoggedInItem/LoggedInItem';
-import { GET_CURRENT_USER_PROFILE } from '../../apollo/queries';
-import { REGISTER_USER } from '../../apollo/mutations';
-import { useQuery, useMutation } from '@apollo/client';
+import ProfileMenuItem from '../ProfileMenuItem/ProfileMenuItem';
+import { useQuery, useMutation, useApolloClient } from '@apollo/client';
 import { Button } from 'reactstrap';
 import LoginModal from '../LoginModal/LoginModal';
 
+import { REGISTER_USER } from '../../apollo/mutations';
+import {
+    GET_CURRENT_USER_PROFILE,
+    GET_USER_PROFILE_BY_EMAIL
+} from '../../apollo/queries';
+
 const LoginManager = props => {
 
-    // Queries & Mutations
+    const client = useApolloClient();
+
+    // Query & Mutation Hooks
     const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE);
+
     const [registerUser] = useMutation(
         REGISTER_USER, {
             update(cache, { data: { createProfile } }) {
-                cache.readQuery({ query: GET_CURRENT_USER_PROFILE });
                 cache.writeQuery({
                     query: GET_CURRENT_USER_PROFILE,
                     data: { userProfile: createProfile }
@@ -22,21 +28,40 @@ const LoginManager = props => {
         }
     );
 
-    // State
+    // State Hooks
     const [modal, setModal] = useState(false);
-    const [isValidLogin, setIsValidLogin] = useState(true);
+    const [isEmailInUse, setEmailInUse] = useState(false);
+    const [isAccountNotFound, setAccountNotFound] = useState(false);
 
     const toggleModal = () => setModal(!modal);
 
-    const login = email => {
+    const login = async email => {
+        const { data: { profileByEmail } } = await client.query({
+            query: GET_USER_PROFILE_BY_EMAIL,
+            variables: { email }
+        });
+
+        if (profileByEmail) {
+            setModal(false);
+            client.writeQuery({
+                query: GET_CURRENT_USER_PROFILE,
+                data: { userProfile: profileByEmail }
+            });
+            if (isAccountNotFound) setAccountNotFound(false);
+        } else {
+            setEmailInUse(false);
+            setAccountNotFound(true);
+        }
     };
 
     const register = async email => {
         try {
             await registerUser({ variables: { email: email } });
+            if (isEmailInUse) setEmailInUse(false);
             setModal(false);
         } catch {
-            setIsValidLogin(false);
+            setAccountNotFound(false);
+            setEmailInUse(true);
         }
     };
 
@@ -45,14 +70,15 @@ const LoginManager = props => {
 
     return (
         data.userProfile.email ?
-        <LoggedInItem userEmail={data.userProfile.email} /> :
+        <ProfileMenuItem userEmail={data.userProfile.email} /> :
         <div>
             <Button onClick={toggleModal}>
                 Login
             </Button>
             <LoginModal
                 isOpen={modal}
-                isValidLogin={isValidLogin}
+                isEmailInUse={isEmailInUse}
+                isAccountNotFound={isAccountNotFound}
                 toggle={toggleModal}
                 loginHandler={login}
                 registerHandler={register}

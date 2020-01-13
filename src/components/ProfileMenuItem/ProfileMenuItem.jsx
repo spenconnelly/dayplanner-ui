@@ -2,7 +2,7 @@ import React from 'react';
 import { useApolloClient } from '@apollo/client';
 import { IoIosArrowDown } from "react-icons/io";
 import { Button } from 'reactstrap';
-import './LoggedInItem.scss';
+import './ProfileMenuItem.scss';
 
 const LoggedInItem = ({ userEmail }) => {
     const client = useApolloClient();
