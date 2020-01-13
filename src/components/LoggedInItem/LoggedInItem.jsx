@@ -1,13 +1,17 @@
 import React from 'react';
 import { useApolloClient } from '@apollo/client';
 import { IoIosArrowDown } from "react-icons/io";
+import { Button } from 'reactstrap';
 import './LoggedInItem.scss';
 
 const LoggedInItem = ({ userEmail }) => {
     const client = useApolloClient();
 
     return (
-        <div className="title" onClick={() => client.writeData({
+        <Button
+          className="title"
+          color="link"
+          onClick={() => client.writeData({
             data: {
               userProfile: {
                 id: null,
@@ -18,7 +22,7 @@ const LoggedInItem = ({ userEmail }) => {
           })}>
             <span>{userEmail}</span>
             <IoIosArrowDown />
-        </div>
+        </Button>
     );
 };
 

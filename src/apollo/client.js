@@ -7,8 +7,9 @@ cache.writeData({
   data: {
     userProfile: {
       id: null,
-      email: 'dmiceli16@gmail.com',
-      events: []
+      email: null,
+      events: [],
+      __type: 'Profile'
     }
   }
 });
@@ -16,7 +17,11 @@ cache.writeData({
 export default new ApolloClient({
   cache,
   link: new HttpLink({
-    uri: apiUrl
+    uri: apiUrl,
+    onError: ({ networkError, graphQLErrors }) => {
+      console.log('graphQLErrors', graphQLErrors);
+      console.log('networkError', networkError);
+    }
   }),
   resolvers: {}
 });

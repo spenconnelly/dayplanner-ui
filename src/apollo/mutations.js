@@ -1,7 +1,16 @@
 import { gql } from '@apollo/client';
 
-export const LOGIN_USER = gql`
-    mutation LoginUser($email: String) {
-
+export const REGISTER_USER = gql`
+    mutation ProfileByEmail($email: String!) {
+        createProfile(email: $email) {
+            id,
+            email,
+            events {
+                id,
+                name,
+                date,
+                description
+            }
+        }
     }
 `;
