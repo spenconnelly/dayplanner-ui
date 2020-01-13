@@ -7,8 +7,22 @@ import { Button } from 'reactstrap';
 import LoginModal from '../LoginModal/LoginModal';
 
 const LoginManager = props => {
+
+    // Queries & Mutations
     const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE);
-    const [registerUser] = useMutation(REGISTER_USER);
+    const [registerUser] = useMutation(
+        REGISTER_USER, {
+            update(cache, { data: { createProfile } }) {
+                cache.readQuery({ query: GET_CURRENT_USER_PROFILE });
+                cache.writeQuery({
+                    query: GET_CURRENT_USER_PROFILE,
+                    data: { userProfile: createProfile }
+                });
+            }
+        }
+    );
+
+    // State
     const [modal, setModal] = useState(false);
     const [isValidLogin, setIsValidLogin] = useState(true);
 
