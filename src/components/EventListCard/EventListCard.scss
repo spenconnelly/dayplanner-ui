@@ -1,0 +1,52 @@
+@import '../../constants/variables.scss';
+
+.card--container {
+    border: solid;
+}
+
+.header--block {
+    display: block;
+    font-weight: bold;
+    background-color: gray;
+    text-align: left;
+    padding: 10px 0 10px 20px;
+}
+
+.body--block {
+
+}
+
+// XS Device
+@media only screen and (max-width: $small-device) {
+    .card--container {
+        margin: 0 5% 10px 5%;
+    }
+}
+
+// S Device
+@media only screen and (min-width: $small-device) {
+    .card--container {
+        margin: 0 10% 10px 10%;
+    }
+}
+
+// M Device
+@media only screen and (min-width: $medium-device) {
+    .card--container {
+        margin: 0 10% 10px 10%;
+    }
+}
+
+// L Device
+@media only screen and (min-width: $large-device) {
+    .card--container {
+        margin: 0 20% 10px 20%;
+    }
+}
+
+// XL Device
+@media only screen and (min-width: $extra-large-device) {
+    .card--container {
+        margin: 0 20% 10px 20%;
+    }
+}
