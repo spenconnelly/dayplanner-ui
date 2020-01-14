@@ -1,20 +1,10 @@
 import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { persistCache } from 'apollo-cache-persist';
 import { apiUrl } from '../constants/urlConstants';
 
 const cache = new InMemoryCache({});
 
-cache.writeData({
-  data: {
-    userProfile: {
-      id: null,
-      email: null,
-      events: [],
-      __type: 'Profile'
-    }
-  }
-});
-
-export default new ApolloClient({
+const client = new ApolloClient({
   cache,
   link: new HttpLink({
     uri: apiUrl,
@@ -25,3 +15,25 @@ export default new ApolloClient({
   }),
   resolvers: {}
 });
+
+persistCache({
+  cache,
+  storage: window.localStorage
+}).then(() => {
+  const initData = {
+    data: {
+      userProfile: {
+        id: null,
+        email: null,
+        events: [],
+        __type: 'Profile'
+      }
+    }
+  };
+  client.writeData({
+    data: initData
+  });
+  client.onResetStore(async () => cache.writeData({ data: initData }));
+});
+
+export default client;

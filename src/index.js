@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import './index.scss';
 import * as serviceWorker from './serviceWorker';
-import DayPlannerRouter from './routes';
+import Routes from './routes';
 
 ReactDOM.render(
-    <DayPlannerRouter></DayPlannerRouter>,
+    <Routes />,
     document.getElementById('root')
 );
 

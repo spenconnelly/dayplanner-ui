@@ -3,7 +3,6 @@ import ProfileMenuItem from '../ProfileMenuItem/ProfileMenuItem';
 import { useQuery, useMutation, useApolloClient } from '@apollo/client';
 import { Button } from 'reactstrap';
 import LoginModal from '../LoginModal/LoginModal';
-
 import { REGISTER_USER } from '../../apollo/mutations';
 import {
     GET_CURRENT_USER_PROFILE,
@@ -11,7 +10,6 @@ import {
 } from '../../apollo/queries';
 
 const LoginManager = props => {
-
     const client = useApolloClient();
 
     // Query & Mutation Hooks

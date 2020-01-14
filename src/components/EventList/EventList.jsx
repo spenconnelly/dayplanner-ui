@@ -16,6 +16,7 @@ const EventList = props => {
         <div className="card-list--container">
             {data ? data.userProfile.events.map(({ id, name, description, date }) =>
                 <EventListCard
+                    key={id}
                     id={id}
                     name={name}
                     description={description}
