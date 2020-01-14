@@ -2,18 +2,23 @@
 
 .card--container {
     border: solid;
+    border-width: 1px;
+    box-shadow: 10px -5px 10px #CCC;
 }
 
 .header--block {
-    display: block;
+    display: flex;
+    justify-content: space-between;
     font-weight: bold;
     background-color: gray;
     text-align: left;
-    padding: 10px 0 10px 20px;
+    padding: 10px 10px 10px 20px;
+    border-bottom: 1px solid;
 }
 
 .body--block {
-
+    padding: 10px 10px 10px 20px;
+    text-align: left;
 }
 
 // XS Device
@@ -25,13 +30,6 @@
 
 // S Device
 @media only screen and (min-width: $small-device) {
-    .card--container {
-        margin: 0 10% 10px 10%;
-    }
-}
-
-// M Device
-@media only screen and (min-width: $medium-device) {
     .card--container {
         margin: 0 10% 10px 10%;
     }

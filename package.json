@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.20",
+    "dateformat": "^3.0.3",
     "graphql": "^14.5.8",
     "node-sass": "^4.13.0",
     "react": "^16.11.0",
