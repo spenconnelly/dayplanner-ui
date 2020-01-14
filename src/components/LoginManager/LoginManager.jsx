@@ -67,11 +67,11 @@ const LoginManager = props => {
     if (error) return null;
 
     return (
-        data.userProfile.email ?
+        data && data.userProfile.email ?
         <ProfileMenuItem userEmail={data.userProfile.email} /> :
         <div>
-            <Button onClick={toggleModal}>
-                Login
+            <Button onClick={toggleModal} color="warning">
+                <b>Login</b>
             </Button>
             <LoginModal
                 isOpen={modal}
