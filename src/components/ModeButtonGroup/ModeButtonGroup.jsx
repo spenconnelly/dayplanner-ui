@@ -8,10 +8,10 @@ const ModeButtonGroup = ({className}) => {
     const history = useHistory();
 
     return (
-        <ButtonGroup color="yellow" className={className}>
-            <Button onClick={() => history.push('/')} ><IoIosCalendar /></Button>
-            <Button onClick={() => history.push('/')}><IoIosCheckboxOutline /></Button>
-            <Button onClick={() => history.push('/events')}><IoIosChatboxes /></Button>
+        <ButtonGroup className={className}>
+            <Button color="warning" onClick={() => history.push('/')} ><IoIosCalendar /></Button>
+            <Button color="warning" onClick={() => history.push('/')}><IoIosCheckboxOutline /></Button>
+            <Button color="warning" onClick={() => history.push('/events')}><IoIosChatboxes /></Button>
         </ButtonGroup>
     );
 };

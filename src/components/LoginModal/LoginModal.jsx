@@ -39,8 +39,8 @@ const LoginModal = props => {
                 { isAccountNotFound && <FormFeedback>Account not found.</FormFeedback> }
             </ModalBody>
             <ModalFooter>
-                <Button onClick={() => loginHandler(input)} color="primary">Login</Button>
-                <Button onClick={() => registerHandler(input)} color="primary">Register</Button>
+                <Button onClick={() => loginHandler(input)} color="warning">Login</Button>
+                <Button onClick={() => registerHandler(input)} color="warning">Register</Button>
             </ModalFooter>
         </Modal>
     );

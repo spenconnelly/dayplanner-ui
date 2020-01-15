@@ -8,7 +8,7 @@ const MenuBar = props => {
     return (
         <div className="menu--container">
             <div className="left--container">
-                <Title titleName="DayPlanner.io" />
+                <Title titleName="DayPlanner" />
             </div>
             <div className="right--container">
                 <LoginManager />

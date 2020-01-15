@@ -2,7 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_CURRENT_USER_PROFILE } from '../../apollo/queries';
 import ModeButtonGroup from '../ModeButtonGroup/ModeButtonGroup';
-import AddEventButton from '../AddEventButton/AddEventButton';
+import CreateEventButton from '../CreateEventButton/CreateEventButton';
 import './ButtonControls.scss';
 
 const ButtonControls = () => {
@@ -12,7 +12,7 @@ const ButtonControls = () => {
     return data && data.userProfile.id ?
         <div className="button-controls--container">
             <ModeButtonGroup />
-            <AddEventButton />
+            <CreateEventButton />
         </div> : null;
 };
 
