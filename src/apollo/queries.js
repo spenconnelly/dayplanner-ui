@@ -2,7 +2,16 @@ import { gql } from '@apollo/client';
 
 export const GET_CURRENT_USER_PROFILE = gql`
     query {
-        userProfile @client
+        userProfile @client {
+            id
+            email
+            events {
+                id
+                name
+                description
+                date
+            }
+        }
     }
 `;
 
@@ -14,6 +23,21 @@ export const GET_CURRENT_EVENTS = gql`
                 name
                 date
                 description
+            }
+        }
+    }
+`;
+
+export const GET_USER_PROFILE = gql`
+    query ProfileByEmail($id: ID!) {
+        profile(id: $id) {
+            id
+            email
+            events {
+                id
+                name
+                description
+                date
             }
         }
     }

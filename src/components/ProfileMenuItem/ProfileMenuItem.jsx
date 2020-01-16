@@ -13,15 +13,8 @@ const LoggedInItem = ({ userEmail }) => {
         <Button
           className="title"
           color="link"
-          onClick={() => {client.writeData({
-              data: {
-                userProfile: {
-                  id: null,
-                  email: null,
-                  events: []
-                }
-              }
-            });
+          onClick={() => {
+            client.resetStore();
             history.push('/');
           }}>
             <span>{userEmail}</span>

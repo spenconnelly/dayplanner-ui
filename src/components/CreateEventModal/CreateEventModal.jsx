@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import DateTimePicker from 'react-datetime-picker';
+import './CreateEventModal.scss';
 import {
     Modal,
     ModalHeader,
@@ -9,10 +11,10 @@ import {
     Button
 } from 'reactstrap';
 
-const CreateEventModal = ({isOpen, toggle}) => {
+const CreateEventModal = ({isOpen, toggle, createEventHandler}) => {
     const [nameValue, setNameValue] = useState('');
-    const [dateValue, setDateValue] = useState('');
     const [descValue, setDescValue] = useState('');
+    const [dateValue, setDateValue] = useState('');
 
     return (
         <Modal isOpen={isOpen} toggle={toggle}>
@@ -22,25 +24,31 @@ const CreateEventModal = ({isOpen, toggle}) => {
             <ModalBody>
                 <Label for="Name">Event Name:</Label>
                 <Input
+                    className="text-input"
                     onChange={(event) => setNameValue(event.target.value)}
                     placeholder="Event Name..."
                     value={nameValue}
                 />
-                <Label for="Date">Date:</Label>
-                <Input
-                    onChange={(event) => setDateValue(event.target.value)}
-                    placeholder="Event Name..."
-                    value={dateValue}
-                />
                 <Label for="Description">Description:</Label>
                 <Input
+                    className="text-input"
                     onChange={(event) => setDescValue(event.target.value)}
                     placeholder="Event Name..."
                     value={descValue}
                 />
+                <div>Date:</div>
+                <DateTimePicker
+                    className="date-picker"
+                    onChange={setDateValue}
+                    value={dateValue}
+                />
             </ModalBody>
             <ModalFooter>
-                <Button color="warning"><b>Create</b></Button>
+                <Button
+                    disabled={!nameValue || !dateValue}
+                    onClick={() => createEventHandler(nameValue, dateValue, descValue)}
+                    color="warning"
+                ><b>Create</b></Button>
             </ModalFooter>
         </Modal>
     );
