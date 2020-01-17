@@ -16,24 +16,27 @@ const client = new ApolloClient({
   resolvers: {}
 });
 
+const currentDate = new Date();
+
+const initData = {
+  dayFocus: currentDate.getDate(),
+  monthFocus: currentDate.getMonth(),
+  yearFocus: currentDate.getFullYear(),
+  userProfile: {
+    id: null,
+    email: null,
+    events: [],
+    __type: 'Profile'
+  }
+};
+client.writeData({
+  data: initData
+});
+client.onResetStore(async () => cache.writeData({ data: initData }));
+
 persistCache({
   cache,
   storage: window.localStorage
-}).then(() => {
-  const initData = {
-    data: {
-      userProfile: {
-        id: null,
-        email: null,
-        events: [],
-        __type: 'Profile'
-      }
-    }
-  };
-  client.writeData({
-    data: initData
-  });
-  client.onResetStore(async () => cache.writeData({ data: initData }));
 });
 
 export default client;

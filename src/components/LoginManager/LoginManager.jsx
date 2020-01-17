@@ -9,18 +9,17 @@ import {
     GET_USER_PROFILE_BY_EMAIL
 } from '../../apollo/queries';
 
-const LoginManager = props => {
+const LoginManager = () => {
     const client = useApolloClient();
 
     // Query & Mutation Hooks
-    const { data, loading, error } = useQuery(GET_CURRENT_USER_PROFILE);
+    const { data, loading } = useQuery(GET_CURRENT_USER_PROFILE);
 
     const [registerUser] = useMutation(
         REGISTER_USER, {
             update(cache, { data: { createProfile } }) {
-                cache.writeQuery({
-                    query: GET_CURRENT_USER_PROFILE,
-                    data: { userProfile: createProfile }
+                cache.writeData({
+                    data: { ...data, userProfile: createProfile }
                 });
             }
         }
@@ -41,9 +40,8 @@ const LoginManager = props => {
 
         if (profileByEmail) {
             setModal(false);
-            client.writeQuery({
-                query: GET_CURRENT_USER_PROFILE,
-                data: { userProfile: profileByEmail }
+            client.writeData({
+                data: { ...data, userProfile: profileByEmail }
             });
             if (isAccountNotFound) setAccountNotFound(false);
         } else {
@@ -64,7 +62,6 @@ const LoginManager = props => {
     };
 
     if (loading) return null;
-    if (error) return null;
 
     return (
         data && data.userProfile.email ?

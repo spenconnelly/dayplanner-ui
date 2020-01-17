@@ -7,9 +7,7 @@ import NoEventsMessage from '../NoEventsMessage/NoEventsMessage';
 
 const EventList = props => {
     // Query & Mutation Hooks
-    const { data, loading, error } = useQuery(GET_CURRENT_EVENTS);
-
-    if (error) return null;
+    const { data, loading } = useQuery(GET_CURRENT_EVENTS);
 
     if (loading) return <LoadingIcon />;
 

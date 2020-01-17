@@ -15,6 +15,14 @@ export const GET_CURRENT_USER_PROFILE = gql`
     }
 `;
 
+export const GET_CURRENT_FOCUS_DATE = gql`
+    query GetCurrentFocusData {
+        dayFocus @client
+        monthFocus @client
+        yearFocus @client
+    }
+`;
+
 export const GET_CURRENT_EVENTS = gql`
     query {
         userProfile @client {
