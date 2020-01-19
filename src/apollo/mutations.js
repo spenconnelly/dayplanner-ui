@@ -25,3 +25,15 @@ export const CREATE_EVENT = gql`
         }
     }
 `;
+
+export const SET_MONTH_FOCUS = gql`
+    mutation SetMonthFocus($month: Int) {
+        setMonthFocus(month: $month) @client
+    }
+`;
+
+export const SET_YEAR_FOCUS = gql`
+    mutation SetYearFocus($year: Int) {
+        setYearFocus(year: $year) @client
+    }
+`;

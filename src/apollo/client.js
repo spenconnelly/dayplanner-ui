@@ -4,6 +4,19 @@ import { apiUrl } from '../constants/urlConstants';
 
 const cache = new InMemoryCache({});
 
+const resolvers = {
+  Mutation: {
+    setMonthFocus: async (_root, { month }, { cache }) => {
+      cache.writeData({ data: { monthFocus: month } });
+      return null;
+    },
+    setYearFocus: async (_root, { year }, { cache }) => {
+      cache.writeData({ data: { yearFocus: year } });
+      return null;
+    }
+  }
+};
+
 const client = new ApolloClient({
   cache,
   link: new HttpLink({
@@ -13,7 +26,7 @@ const client = new ApolloClient({
       console.log('networkError', networkError);
     }
   }),
-  resolvers: {}
+  resolvers
 });
 
 const currentDate = new Date();
@@ -29,9 +42,11 @@ const initData = {
     __type: 'Profile'
   }
 };
+
 client.writeData({
   data: initData
 });
+
 client.onResetStore(async () => cache.writeData({ data: initData }));
 
 persistCache({

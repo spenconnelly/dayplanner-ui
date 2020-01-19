@@ -3,12 +3,12 @@ import './MenuTitle.scss';
 
 const MenuTitle = props => {
     const {
-        titleName
+        children
     } = props;
 
     return (
         <div className="title">
-            {titleName}
+            {children}
         </div>
     );
 };

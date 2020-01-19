@@ -36,6 +36,16 @@ export const GET_CURRENT_EVENTS = gql`
     }
 `;
 
+export const GET_CURRENT_EVENTS_DATES = gql`
+    query {
+        userProfile @client {
+            events {
+                date
+            }
+        }
+    }
+`;
+
 export const GET_USER_PROFILE = gql`
     query ProfileByEmail($id: ID!) {
         profile(id: $id) {

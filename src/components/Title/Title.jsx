@@ -1,8 +1,8 @@
 import React from 'react';
 import './Title.scss';
 
-const Title = ({children}) => (
-    <div className="title--modifer">
+const Title = ({className, children}) => (
+    <div className={`title--modifer ${className}`}>
         {children}
     </div>
 );

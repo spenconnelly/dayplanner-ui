@@ -1,34 +1,40 @@
 @import '../../constants/variables.scss';
 
-.title--modifer {
+.cell--container {
     font-weight: bold;
-    font-style: italic;
+    color: white;
+    background-color: #0501e2;
 }
 
 // XS Device
 @media only screen and (max-width: $small-device) {
-    .title--modifer {
-        font-size: 15px;
+    .cell--container {
+        font-size: 10px;
+        width: 60px;
     }
 }
 
 // S Device
 @media only screen and (min-width: $small-device) {
-    .title--modifer {
-        font-size: 25px;
+    .cell--container {
+        font-size: 12px;
+        width: 80px;
     }
 }
 
 // L Device
 @media only screen and (min-width: $large-device) {
-    .title--modifer {
-        font-size: 30px;
+    .cell--container {
+        font-size: 20px;
+        width: 125px;
     }
 }
 
 // XL Device
 @media only screen and (min-width: $extra-large-device) {
-    .title--modifer {
-        font-size: 45px;
+    .cell--container {
+        font-size: 20px;
+        width: 150px;
     }
 }
+

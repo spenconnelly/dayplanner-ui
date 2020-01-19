@@ -1,34 +1,39 @@
 @import '../../constants/variables.scss';
 
-.title--modifer {
-    font-weight: bold;
-    font-style: italic;
+.calendar-controls--container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.control--button {
+    margin: 10px;
 }
 
 // XS Device
 @media only screen and (max-width: $small-device) {
-    .title--modifer {
-        font-size: 15px;
+    .title--container {
+        width: 125px;
     }
 }
 
 // S Device
 @media only screen and (min-width: $small-device) {
-    .title--modifer {
-        font-size: 25px;
+    .title--container {
+        width: 200px;
     }
 }
 
 // L Device
 @media only screen and (min-width: $large-device) {
-    .title--modifer {
-        font-size: 30px;
+    .title--container {
+        width: 400px;
     }
 }
 
 // XL Device
 @media only screen and (min-width: $extra-large-device) {
-    .title--modifer {
-        font-size: 45px;
+    .title--container {
+        width: 400px;
     }
 }
