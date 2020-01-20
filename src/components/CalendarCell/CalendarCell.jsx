@@ -4,7 +4,9 @@ import './CalendarCell.scss';
 const CalendarCell = ({ dayNum, isToday, events, notCurrentMonth = false }) => {
     return (
         <div className={'day-cell--container ' + (notCurrentMonth ? 'not-current-month--modifier' : null)}>
-            {dayNum}
+            <div className={'number--container ' + (isToday ? 'number-today--modifier' : null)}>
+                 {dayNum}
+            </div>
         </div>
     );
 };

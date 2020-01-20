@@ -12,6 +12,8 @@ import CalendarCell from '../CalendarCell/CalendarCell';
 const Calendar = () => {
     const { data: dateData, loading: dateLoading } = useQuery(GET_CURRENT_FOCUS_DATE);
 
+    const today = new Date();
+
     const prevMonthCells = [];
     const monthCells = [];
     const nextMonthCells = [];
@@ -67,9 +69,30 @@ const Calendar = () => {
                 { Object.values(dayDict).map(dayName => <DayNameCell key={dayName}>{dayName}</DayNameCell>) }
             </div>
             <div className="calendar-cell--container">
-                { prevMonthCells.map(({ dayNum }) => <CalendarCell key={dayNum} dayNum={dayNum} notCurrentMonth={true} />) }
-                { monthCells.map(({ dayNum }) => <CalendarCell key={dayNum} dayNum={dayNum} />) }
-                { nextMonthCells.map(({ dayNum }) => <CalendarCell key={dayNum} dayNum={dayNum} notCurrentMonth={true} />) }
+                {
+                    prevMonthCells.map(({ dayNum }) =>
+                        <CalendarCell
+                            key={dayNum}
+                            dayNum={dayNum}
+                            notCurrentMonth={true}
+                        />
+                )}
+                {
+                    monthCells.map(({ dayNum }) =>
+                        <CalendarCell
+                            key={dayNum}
+                            isToday={dateData.monthFocus === today.getMonth() && dayNum === today.getDate()}
+                            dayNum={dayNum}
+                        />
+                )}
+                {
+                    nextMonthCells.map(({ dayNum }) =>
+                        <CalendarCell
+                            key={dayNum}
+                            dayNum={dayNum}
+                            notCurrentMonth={true}
+                        />)
+                }
             </div>
         </div> : null;
 };
