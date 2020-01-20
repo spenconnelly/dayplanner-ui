@@ -1,9 +1,44 @@
-.calendar--container {
-
-}
+@import '../../constants/variables.scss';
 
 .dayname-cells--container {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.calendar-cell--container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+// XS Device
+@media only screen and (max-width: $small-device) {
+    .calendar-cell--container {
+        width: 420px;
+    }
+}
+
+// S Device
+@media only screen and (min-width: $small-device) {
+    .calendar-cell--container {
+        width: 560px;
+    }
+}
+
+// L Device
+@media only screen and (min-width: $large-device) {
+    .calendar-cell--container {
+        width: 875px;
+    }
+}
+
+// XL Device
+@media only screen and (min-width: $extra-large-device) {
+    .calendar-cell--container {
+        width: 1050px;
+    }
 }

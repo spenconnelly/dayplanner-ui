@@ -1,3 +1,5 @@
+import { isLeapYear } from "../utils/monthUtils";
+
 export const monthDict = {
     0: 'January',
     1: 'February',
@@ -11,6 +13,45 @@ export const monthDict = {
     9: 'October',
     10: 'November',
     11: 'December'
+};
+
+export const numDaysDict = (year) => {
+    return {
+        0: 31,
+        1: isLeapYear(year) ? 29 : 28,
+        2: 31,
+        3: 30,
+        4: 31,
+        5: 30,
+        6: 31,
+        7: 31,
+        8: 30,
+        9: 31,
+        10: 30,
+        11: 31
+    };
+};
+
+export const monthCodes = {
+    0: 1,
+    1: 4,
+    2: 4,
+    3: 0,
+    4: 2,
+    5: 5,
+    6: 0,
+    7: 3,
+    8: 6,
+    9: 1,
+    10: 4,
+    11: 6
+};
+
+export const centuryCodes = {
+    17: 4,
+    18: 2,
+    19: 0,
+    20: 6,
 };
 
 export const dayDict = {
