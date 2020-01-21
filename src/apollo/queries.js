@@ -36,11 +36,12 @@ export const GET_CURRENT_EVENTS = gql`
     }
 `;
 
-export const GET_CURRENT_EVENTS_DATES = gql`
-    query {
-        userProfile @client {
+export const GET_EVENTS_BY_DATE = gql`
+    query GetEventsByDate($date: String) {
+        events @client {
             events {
-                date
+                id
+                name
             }
         }
     }

@@ -32,28 +32,6 @@ export const numDaysDict = (year) => {
     };
 };
 
-export const monthCodes = {
-    0: 1,
-    1: 4,
-    2: 4,
-    3: 0,
-    4: 2,
-    5: 5,
-    6: 0,
-    7: 3,
-    8: 6,
-    9: 1,
-    10: 4,
-    11: 6
-};
-
-export const centuryCodes = {
-    17: 4,
-    18: 2,
-    19: 0,
-    20: 6,
-};
-
 export const dayDict = {
     0: 'Sunday',
     1: 'Monday',

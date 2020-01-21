@@ -1,15 +1,5 @@
-export const isLeapYear = (month) => {
-    if (month % 4 === 0) {
-        if (month % 100 === 0 && month % 400 === 0) {
-            return true;
-        } else if (month % 100 === 0 && month % 400 !== 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    return false;
+export const isLeapYear = (year) => {
+    return ((year % 4 === 0) && (year % 100 !== 0)) || (year % 400 === 0);
 };
 
 export const incrementMonth = (month, year, setMonth, setYear) => {

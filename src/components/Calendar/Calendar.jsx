@@ -2,8 +2,8 @@ import React from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_CURRENT_FOCUS_DATE } from '../../apollo/queries';
 import { SET_MONTH_FOCUS, SET_YEAR_FOCUS } from '../../apollo/mutations';
-import { dayDict, centuryCodes, monthCodes, numDaysDict } from '../../constants/dateDicts';
-import { isLeapYear, incrementMonth, reduceMonth } from '../../utils/monthUtils';
+import { dayDict, numDaysDict } from '../../constants/dateDicts';
+import { incrementMonth, reduceMonth } from '../../utils/monthUtils';
 import LoadingIcon from '../LoadingIcon/LoadingIcon';
 import CalendarControls from '../CalendarControls/CalendarControls';
 import './Calendar.scss';
@@ -22,12 +22,7 @@ const Calendar = () => {
     const nextMonthCells = [];
 
     const firstDayOfMonth = (month, year) => {
-        const lastTwoYearDigits = year % 100;
-        const monthCoefficient = Math.floor(lastTwoYearDigits/ 4) + 1 + monthCodes[month];
-        const leapYearCoefficient = isLeapYear(year) && (month === 0 || month === 1) ? 1 : 0;
-        const centuryCoefficient = centuryCodes[Math.floor(year/100)];
-        const numDay = (monthCoefficient - leapYearCoefficient + centuryCoefficient + lastTwoYearDigits) % 7 - 1;
-        return numDay === -1 ? 6 : numDay;
+        return new Date(year, month, 1).getDay();
     };
 
     const populatePrevMonthCells = (month, year) => {
@@ -39,16 +34,21 @@ const Calendar = () => {
                 dayNum: lastMonthNumDays - i,
                 onClick: () => reduceMonth(month, year, setMonthFocus, setYearFocus)
             };
+
             prevMonthCells.unshift(cell);
         }
     };
 
     const populateCurrentMonthCells = (month, year) => {
         for(let i = 1; i <= numDaysDict(year)[ month]; i++) {
+            const date = new Date(year, month, i);
+
             const cell = {
                 dayNum: i,
-                isToday: year === today.getFullYear() && month === today.getMonth() && i === today.getDate()
+                date,
+                isToday: date.setHours(0,0,0,0) === today.setHours(0,0,0,0),
             };
+
             monthCells.push(cell);
         }
     };
@@ -92,9 +92,10 @@ const Calendar = () => {
                         />
                 )}
                 {
-                    monthCells.map(({ dayNum, isToday }) =>
+                    monthCells.map(({ dayNum, isToday, date }) =>
                         <CalendarCell
-                            key={dayNum}
+                            key={date}
+                            date={date}
                             isToday={isToday}
                             dayNum={dayNum}
                         />
