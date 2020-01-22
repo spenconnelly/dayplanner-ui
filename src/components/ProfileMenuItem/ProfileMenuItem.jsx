@@ -17,7 +17,7 @@ const LoggedInItem = ({ userEmail }) => {
             client.resetStore();
             history.push('/');
           }}>
-            <span>{userEmail}</span>
+            <span className="name--container">{userEmail}</span>
             <IoIosArrowDown />
         </Button>
     );
